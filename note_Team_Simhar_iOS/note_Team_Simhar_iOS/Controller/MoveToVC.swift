@@ -61,9 +61,12 @@ extension MoveToVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell  = UITableViewCell(style: .default, reuseIdentifier: "")
         cell.textLabel?.text = folders[indexPath.row].name
-        cell.backgroundColor = .darkGray
+       // cell.backgroundColor = .darkGray
         cell.textLabel?.textColor = .lightGray
         cell.textLabel?.tintColor = .lightGray
+        let backgroundImage = UIImage(named: "n2")
+        let imageView = UIImageView(image: backgroundImage)
+      //  self.tableView.backgroundView = imageView
         return cell
     }
     

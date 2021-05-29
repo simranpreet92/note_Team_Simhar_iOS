@@ -11,7 +11,7 @@
     </entity>
     <entity name="Note" representedClassName="Note" syncable="YES" codeGenerationType="class">
         <attribute name="body" optional="YES" attributeType="String"/>
-        <attribute name="image" optional="YES" attributeType="Binary"/>
+        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="title" attributeType="String"/>
         <relationship name="parentFolder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="notes" inverseEntity="Folder"/>
     </entity>

@@ -20,7 +20,7 @@ class typesFolderTVC: UITableViewController {
     //MARK: - view lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         loadFolders()
 
         // Uncomment the following line to preserve selection between presentations
@@ -50,10 +50,13 @@ class typesFolderTVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "folder_cell", for: indexPath)
         
         cell.textLabel?.text = folders[indexPath.row].name
-        cell.textLabel?.textColor = .lightGray
-        cell.detailTextLabel?.textColor = .lightGray
+        cell.textLabel?.textColor = .white
+        cell.detailTextLabel?.textColor = .white
         cell.detailTextLabel?.text = "\(folders[indexPath.row].notes?.count ?? 0)"
         cell.imageView?.image = UIImage(systemName: "folder")
+        let backgroundImage = UIImage(named: "n3")
+        let imageView = UIImageView(image: backgroundImage)
+        self.tableView.backgroundView = imageView
         cell.selectionStyle = .none
         
         return cell

@@ -5,13 +5,14 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Folders-->
         <scene sceneID="wvQ-XN-9qG">
             <objects>
-                <tableViewController id="rOG-z7-303" customClass="typesFolderTVC" customModule="NotesApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="rOG-z7-303" customClass="typesFolderTVC" customModule="note_Team_Simhar_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="n7t-hD-nO0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -39,8 +40,10 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="tintColor" systemColor="systemYellowColor"/>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" systemColor="systemYellowColor"/>
                                 <connections>
                                     <segue destination="JEN-XW-A8w" kind="show" id="HBY-Wa-UVq"/>
                                 </connections>
@@ -65,12 +68,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jlz-Km-SAc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1939" y="138"/>
+            <point key="canvasLocation" x="1937.68115942029" y="137.94642857142856"/>
         </scene>
         <!--Notes-->
         <scene sceneID="EyD-1p-HmY">
             <objects>
-                <tableViewController id="JEN-XW-A8w" customClass="NotesTVC" customModule="NotesApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="JEN-XW-A8w" customClass="NotesTVC" customModule="note_Team_Simhar_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Wu1-Te-V2p">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,7 +86,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="384.5" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <segue destination="Mp0-Of-fEQ" kind="show" id="2Hc-fs-lLt"/>
                                 </connections>
@@ -133,19 +136,15 @@
         <!--Single NoteVC-->
         <scene sceneID="Gxs-8r-DUg">
             <objects>
-                <viewController id="Mp0-Of-fEQ" customClass="singleNoteVC" customModule="NotesApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Mp0-Of-fEQ" customClass="singleNoteVC" customModule="note_Team_Simhar_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PeE-Oe-l6G">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Exq-UA-9fD">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="n6" translatesAutoresizingMaskIntoConstraints="NO" id="rge-eG-nMG">
+                                <rect key="frame" x="0.0" y="88" width="414" height="463"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="GHL-gM-C5g">
                                 <rect key="frame" x="70" y="733" width="273.5" height="30"/>
                                 <subviews>
@@ -168,27 +167,58 @@
                                         <state key="normal" image="mic.circle.fill" catalog="system"/>
                                     </button>
                                 </subviews>
+                                <color key="tintColor" red="0.25185244849999999" green="0.20111651859999999" blue="0.1909353302" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oZm-PU-OiQ">
+                                <rect key="frame" x="304" y="98" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="8Ro-nw-EZ9"/>
+                                    <constraint firstAttribute="height" constant="30" id="ayb-bi-W77"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BUT-S5-Mnj">
+                                <rect key="frame" x="185" y="133" width="219" height="250"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="6e3-N9-2cT"/>
+                                    <constraint firstAttribute="width" constant="219" id="SrO-uy-1Gs"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bb1" translatesAutoresizingMaskIntoConstraints="NO" id="9sW-Uq-6Gm">
-                                <rect key="frame" x="52" y="519" width="310" height="194"/>
+                                <rect key="frame" x="279" y="269" width="120" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="wVq-iK-Hhj"/>
+                                    <constraint firstAttribute="height" constant="100" id="xCp-CS-oew"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XtE-JG-pzj"/>
-                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="XtE-JG-pzj" firstAttribute="trailing" secondItem="9sW-Uq-6Gm" secondAttribute="trailing" constant="52" id="Cv0-uU-Ea4"/>
+                            <constraint firstItem="XtE-JG-pzj" firstAttribute="trailing" secondItem="oZm-PU-OiQ" secondAttribute="trailing" constant="10" id="0qN-WH-rmA"/>
                             <constraint firstItem="GHL-gM-C5g" firstAttribute="leading" secondItem="XtE-JG-pzj" secondAttribute="leading" constant="20" id="Eca-fx-drD"/>
-                            <constraint firstItem="9sW-Uq-6Gm" firstAttribute="leading" secondItem="XtE-JG-pzj" secondAttribute="leading" constant="52" id="Hny-eZ-LDw"/>
+                            <constraint firstItem="BUT-S5-Mnj" firstAttribute="top" secondItem="oZm-PU-OiQ" secondAttribute="bottom" constant="5" id="GBY-CE-mZm"/>
+                            <constraint firstItem="oZm-PU-OiQ" firstAttribute="top" secondItem="XtE-JG-pzj" secondAttribute="top" constant="10" id="HCR-nZ-JnR"/>
+                            <constraint firstItem="XtE-JG-pzj" firstAttribute="trailing" secondItem="BUT-S5-Mnj" secondAttribute="trailing" constant="10" id="R5F-Gm-yEe"/>
                             <constraint firstItem="GHL-gM-C5g" firstAttribute="leading" secondItem="XtE-JG-pzj" secondAttribute="leading" constant="70" id="Rqt-Vc-vZU"/>
-                            <constraint firstItem="GHL-gM-C5g" firstAttribute="top" secondItem="9sW-Uq-6Gm" secondAttribute="bottom" constant="20" id="g2n-BT-6Jw"/>
+                            <constraint firstItem="9sW-Uq-6Gm" firstAttribute="top" secondItem="oZm-PU-OiQ" secondAttribute="bottom" constant="141" id="g9h-Hp-mGV"/>
                             <constraint firstItem="XtE-JG-pzj" firstAttribute="bottom" secondItem="GHL-gM-C5g" secondAttribute="bottom" constant="50" id="rzT-3L-o7v"/>
+                            <constraint firstItem="XtE-JG-pzj" firstAttribute="trailing" secondItem="9sW-Uq-6Gm" secondAttribute="trailing" constant="15" id="tid-DV-VBu"/>
                             <constraint firstItem="XtE-JG-pzj" firstAttribute="bottom" secondItem="GHL-gM-C5g" secondAttribute="bottom" constant="50" id="xOj-9c-KIZ"/>
+                            <constraint firstItem="oZm-PU-OiQ" firstAttribute="top" secondItem="XtE-JG-pzj" secondAttribute="top" constant="10" id="y33-8A-kAm"/>
+                            <constraint firstItem="XtE-JG-pzj" firstAttribute="trailing" secondItem="oZm-PU-OiQ" secondAttribute="trailing" constant="10" id="yV2-n3-YZz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ald-SX-gtQ"/>
                     <connections>
                         <outlet property="imageView" destination="9sW-Uq-6Gm" id="uw5-5c-CnU"/>
-                        <outlet property="noteTextView" destination="Exq-UA-9fD" id="Uzk-Q1-4kk"/>
+                        <outlet property="noteTextView" destination="BUT-S5-Mnj" id="uxG-tj-Kqh"/>
+                        <outlet property="titleTextView" destination="oZm-PU-OiQ" id="610-wd-fNs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QVV-gU-gJ3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -198,7 +228,7 @@
         <!--Move ToVC-->
         <scene sceneID="HKF-Nr-CQy">
             <objects>
-                <viewController id="7Yh-Dw-Vpr" customClass="MoveToVC" customModule="NotesApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7Yh-Dw-Vpr" customClass="MoveToVC" customModule="note_Team_Simhar_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p7G-yu-H9M">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -311,7 +341,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="FlG-Jz-P8T"/>
     </inferredMetricsTieBreakers>
-    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+    <color key="tintColor" systemColor="systemYellowColor"/>
     <resources>
         <image name="bb1" width="259" height="194"/>
         <image name="camera.fill" catalog="system" width="128" height="94"/>
@@ -319,8 +349,18 @@
         <image name="folder.badge.plus" catalog="system" width="128" height="91"/>
         <image name="location.fill" catalog="system" width="128" height="121"/>
         <image name="mic.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="n6" width="275" height="183"/>
         <image name="rectangle.and.pencil.and.ellipsis.rtl" catalog="system" width="128" height="92"/>
         <image name="trash" catalog="system" width="121" height="128"/>
         <image name="tray.and.arrow.down" catalog="system" width="128" height="109"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

@@ -60,12 +60,15 @@ class NotesTVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "note_cell", for: indexPath)
         let note = notes[indexPath.row]
         cell.textLabel?.text = note.title
-        cell.textLabel?.textColor = .lightGray
+        cell.textLabel?.textColor = .white
+        cell.detailTextLabel?.textColor = .white
         
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = .darkGray
-        cell.selectedBackgroundView = backgroundView
-
+       // let backgroundView = UIView()
+        //backgroundView.backgroundColor = .darkGray
+        //cell.selectedBackgroundView = backgroundView
+        let backgroundImage = UIImage(named: "n3")
+        let imageView = UIImageView(image: backgroundImage)
+        self.tableView.backgroundView = imageView
         return cell
     }
     
@@ -96,7 +99,7 @@ class NotesTVC: UITableViewController {
         let request: NSFetchRequest<Note> = Note.fetchRequest()
         let folderPredicate = NSPredicate(format: "parentFolder.name=%@", selectedFolder!.name!)
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-        
+        request.sortDescriptors = [NSSortDescriptor(key: "image", ascending: true)]
         if let additionalPredicate = predicate {
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [folderPredicate, additionalPredicate])
         } else {
@@ -119,10 +122,13 @@ class NotesTVC: UITableViewController {
     
     /// update note in core data
     /// - Parameter title: note's title
-    func updateNote(with title: String) {
-        notes = []
+    func updateNote(with title: String , with image : Data , with text : String)
+   // func updateNote(with title: String)
+    {   notes = []
         let newNote = Note(context: context)
         newNote.title = title
+        newNote.image = image
+        newNote.body = text
         newNote.parentFolder = selectedFolder
         saveNotes()
         loadNotes()
@@ -243,3 +249,9 @@ extension NotesTVC: UISearchBarDelegate {
     }
     
 }
+
+
+/* let image : UIImage = UIImage(data: (selectedNote?.image)!)!
+ imageView.image = image
+ print(image)
+ print(imageView.image)*/

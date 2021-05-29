@@ -9,10 +9,12 @@
 import UIKit
 
 class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePickerControllerDelegate {
+    @IBOutlet weak var titleTextView: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var noteTextView: UITextView!
     let imagePicker = UIImagePickerController()
-    
+//    static let shareInstance = DataBaseHelper()
+
     var selectedNote: Note? {
         didSet {
             editMode = true
@@ -24,20 +26,28 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
     
     // an in instance of the noteTVC in noteVC - delegate
     weak var delegate: NotesTVC?
-    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        noteTextView.text = selectedNote?.title
+        titleTextView.text = selectedNote?.title
+        noteTextView.text = selectedNote?.body
+        //imageView.image = UIImage(named: "66")
+      /*  let image : UIImage = UIImage(data: (selectedNote?.image)!)!
+        imageView.image = image
+        print(image)
+        print(imageView.image)*/
         imagePicker.delegate = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         if editMode {
             delegate!.deleteNote(note: selectedNote!)
+           
         }
-        guard noteTextView.text != "" else {return}
-        delegate!.updateNote(with: noteTextView.text )
+        guard noteTextView.text != "" || imageView.image != nil else {return}
+        delegate!.updateNote(with: titleTextView.text! , with: (imageView.image?.pngData())! , with : noteTextView.text!)
     }
     @IBAction func pictureBtn(_ sender: UITapGestureRecognizer) {
        
@@ -53,6 +63,22 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
     if  let chosenImage = info[.editedImage] as? UIImage
       {
         imageView.image = chosenImage
+    //saving image into binary data
+       
+        let imageInstance = Note(context: context)
+        imageInstance.image = chosenImage.pngData()
+        
+        print(imageInstance.image)
+        print(chosenImage.pngData())
+        print(chosenImage)
+        do {
+        try context.save()
+        print("Image is saved")
+        } catch {
+        print(error.localizedDescription)
+              }
+
+
     
       }
       else{
