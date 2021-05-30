@@ -6,15 +6,23 @@
 //
 
 import UIKit
+import MapKit
 import AVFoundation
-class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePickerControllerDelegate, AVAudioRecorderDelegate {
+class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePickerControllerDelegate, AVAudioRecorderDelegate , CLLocationManagerDelegate, MKMapViewDelegate{
+    @IBOutlet weak var locationBtn: UIButton!
+  
     @IBOutlet weak var titleTextView: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var recordButton: UIButton!
+    // create location manager
+    var locationManager = CLLocationManager()
+    var userCurrentLocation : CLLocationCoordinate2D!
+    var mRegion : MKCoordinateRegion!
     var audioFile = ""
     let imagePicker = UIImagePickerController()
-    
+    var userCurrentLocationLat = 0.0
+    var userCurrentLocationLong = 0.0
     //recording audio
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
@@ -40,18 +48,55 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
         audioFile = noteChosen?.title ?? ""
         imagePicker.delegate = self
         self.setRecordSession()
-        
+        // we assign the delegate property of the location manager to be this class
         
         
     }
+    //MARK:- CLLocationManagerDelegate Methods
 
+       func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("3 entry")
+           let mUserLocation:CLLocation = locations[0] as CLLocation
+
+           let center = CLLocationCoordinate2D(latitude: mUserLocation.coordinate.latitude, longitude: mUserLocation.coordinate.longitude)
+              mRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        //print(mRegion)
+       print(center)
+         userCurrentLocationLat = center.latitude
+       print(userCurrentLocationLat)
+       // print(userCurrentLocationLat)
+       
+         userCurrentLocationLong = center.longitude
+        print(userCurrentLocationLong)
+        
+        print("3 exit")
+         //  mMapView.setRegion(mRegion, animated: true)
+       }
+   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+           print("Error - locationManager: \(error.localizedDescription)")
+       }
+   //MARK:- Intance Methods
+
+   func determineCurrentLocation() {
+    print("2 entry")
+       locationManager = CLLocationManager()
+       locationManager.delegate = self
+       locationManager.desiredAccuracy = kCLLocationAccuracyBest
+       locationManager.requestAlwaysAuthorization()
+
+       if CLLocationManager.locationServicesEnabled() {
+           locationManager.startUpdatingLocation()
+       }
+    print("2 exit")
+   }
+    
     override func viewWillDisappear(_ animated: Bool) {
         if editNote {
             delegate!.deleteSelectedNote(note: noteChosen!)
            
         }
         guard noteTextView.text != "" || imageView.image != nil else {return}
-        delegate!.updateSelectedNote(with: titleTextView.text! , with: (imageView.image?.pngData())! , with : noteTextView.text! , with : audioFile )
+        delegate!.updateSelectedNote(with: titleTextView.text! , with: (imageView.image?.pngData())! , with : noteTextView.text! , with : audioFile , with : userCurrentLocationLat , with : userCurrentLocationLong)
     }
     @IBAction func pictureBtn(_ sender: UITapGestureRecognizer) {
        
@@ -169,5 +214,20 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
     }
   
  
-   
+    @IBAction func userCurrentLocation(_ sender: UIButton) {
+        locationManager.delegate = self
+        
+       
+       print("1 entr")
+       // call current location function
+       determineCurrentLocation()
+       print("latloc" , userCurrentLocationLat)
+        print("longloc" , userCurrentLocationLong)
+       
+       
+    }
+    
+    @IBAction func viewLocation(_ sender: UIButton) {
+        
+    }
 }

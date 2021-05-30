@@ -11,6 +11,7 @@ import CoreData
 class NotesTVC: UITableViewController {
 
   
+    @IBOutlet weak var sortBtn: UIBarButtonItem!
     @IBOutlet weak var trashBtn: UIBarButtonItem!
     @IBOutlet weak var moveBtn: UIBarButtonItem!
     let date = Date()
@@ -123,7 +124,7 @@ class NotesTVC: UITableViewController {
     
     /// update note in core data
     /// - Parameter title: note's title
-    func updateSelectedNote(with title: String , with image : Data , with text : String , with audio : String)
+    func updateSelectedNote(with title: String , with image : Data , with text : String , with audio : String , with userLocationL : Double , with userLocationLong : Double)
    // func updateNote(with title: String)
     {   notes = []
         let newNote = Note(context: context)
@@ -131,7 +132,10 @@ class NotesTVC: UITableViewController {
         newNote.image = image
         newNote.body = text
         newNote.audio = audio
-    
+        newNote.lattitude = userLocationL
+        newNote.longitude = userLocationLong
+        print("userLt" , newNote.lattitude)
+        print("userLg" , newNote.longitude)
         newNote.parentFolder = selectedFolder
             saveSelectedNote()
         loadSavedNotes()

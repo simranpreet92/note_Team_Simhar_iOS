@@ -5,7 +5,9 @@
         <attribute name="body" optional="YES" attributeType="String"/>
         <attribute name="currentDate" optional="YES" attributeType="String"/>
         <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
-        <attribute name="title" attributeType="String"/>
+        <attribute name="lattitude" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="parentFolder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NotesFolder" inverseName="notes" inverseEntity="NotesFolder"/>
     </entity>
     <entity name="NotesFolder" representedClassName="NotesFolder" syncable="YES" codeGenerationType="class">
@@ -18,7 +20,7 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Note" positionX="309.24609375" positionY="18.15234375" width="128" height="119"/>
+        <element name="Note" positionX="309.24609375" positionY="18.15234375" width="128" height="149"/>
         <element name="NotesFolder" positionX="-27" positionY="18" width="128" height="59"/>
     </elements>
 </model>
