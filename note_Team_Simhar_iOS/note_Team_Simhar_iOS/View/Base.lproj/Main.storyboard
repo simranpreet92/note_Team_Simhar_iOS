@@ -170,9 +170,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IhP-Kc-8hh">
-                                        <rect key="frame" x="249" y="0.0" width="24.5" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" image="mic.circle.fill" catalog="system"/>
+                                        <rect key="frame" x="249" y="0.5" width="24.5" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" image="mic.circle" catalog="system">
+                                            <color key="titleColor" systemColor="secondarySystemBackgroundColor"/>
+                                        </state>
                                     </button>
                                 </subviews>
                                 <color key="tintColor" red="0.25185244849999999" green="0.20111651859999999" blue="0.1909353302" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -226,6 +228,7 @@
                     <connections>
                         <outlet property="imageView" destination="9sW-Uq-6Gm" id="uw5-5c-CnU"/>
                         <outlet property="noteTextView" destination="BUT-S5-Mnj" id="uxG-tj-Kqh"/>
+                        <outlet property="recordButton" destination="IhP-Kc-8hh" id="CgE-e8-hLf"/>
                         <outlet property="titleTextView" destination="oZm-PU-OiQ" id="610-wd-fNs"/>
                     </connections>
                 </viewController>
@@ -361,12 +364,15 @@
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="folder.badge.plus" catalog="system" width="128" height="91"/>
         <image name="location.fill" catalog="system" width="128" height="121"/>
-        <image name="mic.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="mic.circle" catalog="system" width="128" height="121"/>
         <image name="n6" width="275" height="183"/>
         <image name="nn3" width="271" height="186"/>
         <image name="rectangle.and.pencil.and.ellipsis.rtl" catalog="system" width="128" height="92"/>
         <image name="trash" catalog="system" width="121" height="128"/>
         <image name="tray.and.arrow.down" catalog="system" width="128" height="109"/>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

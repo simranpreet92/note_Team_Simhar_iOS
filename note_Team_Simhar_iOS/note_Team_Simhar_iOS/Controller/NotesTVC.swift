@@ -123,15 +123,17 @@ class NotesTVC: UITableViewController {
     
     /// update note in core data
     /// - Parameter title: note's title
-    func updateSelectedNote(with title: String , with image : Data , with text : String)
+    func updateSelectedNote(with title: String , with image : Data , with text : String , with audio : String)
    // func updateNote(with title: String)
     {   notes = []
         let newNote = Note(context: context)
         newNote.title = title
         newNote.image = image
         newNote.body = text
+        newNote.audio = audio
+    
         newNote.parentFolder = selectedFolder
-        saveSelectedNote()
+            saveSelectedNote()
         loadSavedNotes()
     }
     
