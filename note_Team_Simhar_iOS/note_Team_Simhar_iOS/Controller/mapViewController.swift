@@ -2,8 +2,7 @@
 //  mapViewController.swift
 //  note_Team_Simhar_iOS
 //
-//  Created by Harneet singh on 30/05/21.
-//  Copyright © 2021 mohammadkiani. All rights reserved.
+//  Created by Simranpreet kaur on 30/05/21.
 //
 
 import UIKit

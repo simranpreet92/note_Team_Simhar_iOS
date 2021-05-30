@@ -101,7 +101,7 @@ class NotesTVC: UITableViewController {
         let request: NSFetchRequest<Note> = Note.fetchRequest()
         let folderPredicate = NSPredicate(format: "parentFolder.name=%@", selectedFolder!.name!)
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-        request.sortDescriptors = [NSSortDescriptor(key: "image", ascending: true)]
+      
         if let additionalPredicate = predicate {
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [folderPredicate, additionalPredicate])
         } else {
@@ -130,6 +130,7 @@ class NotesTVC: UITableViewController {
         let newNote = Note(context: context)
         newNote.title = title
         newNote.image = image
+        print("saved image" , newNote.image)
         newNote.body = text
         newNote.audio = audio
         newNote.lattitude = userLocationL

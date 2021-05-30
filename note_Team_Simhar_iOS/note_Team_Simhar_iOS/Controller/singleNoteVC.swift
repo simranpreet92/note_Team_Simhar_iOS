@@ -46,6 +46,7 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
         titleTextView.text = noteChosen?.title
         noteTextView.text = noteChosen?.body
         audioFile = noteChosen?.title ?? ""
+        imageView.image = UIImage(data: (noteChosen?.image)!)
         imagePicker.delegate = self
         self.setRecordSession()
         // we assign the delegate property of the location manager to be this class
@@ -117,7 +118,7 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
         let imageInstance = Note(context: context)
         imageInstance.image = chosenImage.pngData()
         
-        print(imageInstance.image)
+      //  print(imageInstance.image)
         print(chosenImage.pngData())
         print(chosenImage)
         do {
