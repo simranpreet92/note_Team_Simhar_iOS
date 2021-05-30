@@ -1,10 +1,9 @@
 //
-//  FolderTVC.swift
-//  Note Demo Template
+//  typeFolderTVC.swift
+//  note_team_Simhar_iOS
 //
-//  Created by Mohammad Kiani on 2021-01-27.
-//  Copyright © 2021 mohammadkiani. All rights reserved.
-//
+//  Created by Simranpreet kaur on 2021-05-28.
+
 
 import UIKit
 import CoreData
@@ -12,7 +11,7 @@ import CoreData
 class typesFolderTVC: UITableViewController {
     
     // create a folder array to populate the table
-    var folders = [Folder]()
+    var folders = [NotesFolder]()
     
     // create a context to work with core data
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -23,10 +22,7 @@ class typesFolderTVC: UITableViewController {
        
         loadFolders()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        //  display an Edit button in the navigation bar
          self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
@@ -58,7 +54,6 @@ class typesFolderTVC: UITableViewController {
         let imageView = UIImageView(image: backgroundImage)
         self.tableView.backgroundView = imageView
         cell.selectionStyle = .none
-        
         return cell
     }
     
@@ -72,8 +67,8 @@ class typesFolderTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
-            deleteFolder(folder: folders[indexPath.row])
-            saveFolders()
+            deleteSelectedFolder(folder: folders[indexPath.row])
+            saveSelectedFolder()
             folders.remove(at: indexPath.row)
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -89,14 +84,14 @@ class typesFolderTVC: UITableViewController {
     @IBAction func addFolderBtnPressed(_ sender: UIBarButtonItem) {
         
         var textField = UITextField()
-        let alert = UIAlertController(title: "Add New Folder", message: "please give a name", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Add New Notes Category", message: "please give a name", preferredStyle: .alert)
         let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
             let folderNames = self.folders.map {$0.name?.lowercased()}
             guard !folderNames.contains(textField.text?.lowercased()) else {self.showAlert(); return}
-            let newFolder = Folder(context: self.context)
+            let newFolder = NotesFolder(context: self.context)
             newFolder.name = textField.text!
             self.folders.append(newFolder)
-            self.saveFolders()
+            self.saveSelectedFolder()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         // change the color of the cancel button action
@@ -115,7 +110,7 @@ class typesFolderTVC: UITableViewController {
     
     /// show alert when the name of the folder is taken
     func showAlert() {
-        let alert = UIAlertController(title: "Name Taken", message: "Please choose another name", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Name Already Taken", message: "Please choose another name", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
@@ -125,7 +120,7 @@ class typesFolderTVC: UITableViewController {
     
     /// load folder from core data
     func loadFolders() {
-        let request: NSFetchRequest<Folder> = Folder.fetchRequest()
+        let request: NSFetchRequest<NotesFolder> = NotesFolder.fetchRequest()
         
         do {
             folders = try context.fetch(request)
@@ -136,7 +131,7 @@ class typesFolderTVC: UITableViewController {
     }
     
     /// save folders into core data
-    func saveFolders() {
+    func saveSelectedFolder() {
         do {
             try context.save()
             tableView.reloadData()
@@ -145,7 +140,7 @@ class typesFolderTVC: UITableViewController {
         }
     }
     
-    func deleteFolder(folder: Folder) {
+    func deleteSelectedFolder(folder: NotesFolder) {
         context.delete(folder)
     }
     

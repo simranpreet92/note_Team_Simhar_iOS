@@ -1,9 +1,8 @@
 //
 //  SceneDelegate.swift
-//  NoteFolder App Demo
+//  note_team_Simhar_iOS
 //
-//  Created by Mohammad Kiani on 2020-06-20.
-//  Copyright © 2020 mohammadkiani. All rights reserved.
+//  Created by Simranpreet kaur on 2021-05-28.
 //
 
 import UIKit

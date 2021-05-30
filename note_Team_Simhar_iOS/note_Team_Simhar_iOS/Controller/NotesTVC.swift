@@ -1,26 +1,28 @@
 //
-//  NoteTVC.swift
-//  Note Demo Template
+//  NotesTVC.swift
+//  note_team_Simhar_iOS
 //
-//  Created by Mohammad Kiani on 2021-01-27.
-//  Copyright © 2021 mohammadkiani. All rights reserved.
-//
+//  Created by Simranpreet kaur on 2021-05-28.
+
 
 import UIKit
 import CoreData
 
 class NotesTVC: UITableViewController {
 
+  
     @IBOutlet weak var trashBtn: UIBarButtonItem!
     @IBOutlet weak var moveBtn: UIBarButtonItem!
+    let date = Date()
+    let formatter = DateFormatter()
     
     var deletingMovingOption: Bool = false
     
     // create notes
     var notes = [Note]()
-    var selectedFolder: Folder? {
+    var selectedFolder: NotesFolder? {
         didSet {
-            loadNotes()
+            loadSavedNotes()
         }
     }
     
@@ -36,9 +38,7 @@ class NotesTVC: UITableViewController {
         navigationItem.title = selectedFolder?.name
         showSearchBar()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
+      
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
@@ -59,13 +59,14 @@ class NotesTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "note_cell", for: indexPath)
         let note = notes[indexPath.row]
-        cell.textLabel?.text = note.title
-        cell.textLabel?.textColor = .white
-        cell.detailTextLabel?.textColor = .white
+      
+        formatter.dateFormat = "dd.MM.yyyy"
         
-       // let backgroundView = UIView()
-        //backgroundView.backgroundColor = .darkGray
-        //cell.selectedBackgroundView = backgroundView
+        let result = formatter.string(from: date)
+        note.currentDate = result
+        cell.textLabel?.textColor = .white
+        cell.textLabel?.text = note.title! + "      " + note.currentDate!
+        cell.detailTextLabel?.textColor = .white
         let backgroundImage = UIImage(named: "n3")
         let imageView = UIImageView(image: backgroundImage)
         self.tableView.backgroundView = imageView
@@ -81,13 +82,13 @@ class NotesTVC: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            deleteNote(note: notes[indexPath.row])
-            saveNotes()
+            deleteSelectedNote(note: notes[indexPath.row])
+            saveSelectedNote()
             notes.remove(at: indexPath.row)
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+          
         }
     }
     
@@ -95,7 +96,7 @@ class NotesTVC: UITableViewController {
     
     /// load notes deom core data
     /// - Parameter predicate: parameter comming from search bar - by default is nil
-    func loadNotes(predicate: NSPredicate? = nil) {
+    func loadSavedNotes(predicate: NSPredicate? = nil) {
         let request: NSFetchRequest<Note> = Note.fetchRequest()
         let folderPredicate = NSPredicate(format: "parentFolder.name=%@", selectedFolder!.name!)
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
@@ -116,13 +117,13 @@ class NotesTVC: UITableViewController {
     
     /// delete notes from context
     /// - Parameter note: note defined in Core Data
-    func deleteNote(note: Note) {
+    func deleteSelectedNote(note: Note) {
         context.delete(note)
     }
     
     /// update note in core data
     /// - Parameter title: note's title
-    func updateNote(with title: String , with image : Data , with text : String)
+    func updateSelectedNote(with title: String , with image : Data , with text : String)
    // func updateNote(with title: String)
     {   notes = []
         let newNote = Note(context: context)
@@ -130,12 +131,12 @@ class NotesTVC: UITableViewController {
         newNote.image = image
         newNote.body = text
         newNote.parentFolder = selectedFolder
-        saveNotes()
-        loadNotes()
+        saveSelectedNote()
+        loadSavedNotes()
     }
     
     /// Save notes into core data
-    func saveNotes() {
+    func saveSelectedNote() {
         do {
             try context.save()
         } catch {
@@ -151,11 +152,11 @@ class NotesTVC: UITableViewController {
         if let indexPaths = tableView.indexPathsForSelectedRows {
             let rows = (indexPaths.map {$0.row}).sorted(by: >)
             
-            let _ = rows.map {deleteNote(note: notes[$0])}
+            let _ = rows.map {deleteSelectedNote(note: notes[$0])}
             let _ = rows.map {notes.remove(at: $0)}
             
             tableView.reloadData()
-            saveNotes()
+            saveSelectedNote()
         }
     }
     
@@ -199,12 +200,12 @@ class NotesTVC: UITableViewController {
             
             if let cell = sender as? UITableViewCell {
                 if let index = tableView.indexPath(for: cell)?.row {
-                    destination.selectedNote = notes[index]
+                    destination.noteChosen = notes[index]
                 }
             }
         }
         
-        if let destination = segue.destination as? MoveToVC {
+        if let destination = segue.destination as? moveNoteVC {
             if let index = tableView.indexPathsForSelectedRows {
                 let rows = index.map {$0.row}
                 destination.selectedNotes = rows.map {notes[$0]}
@@ -215,8 +216,8 @@ class NotesTVC: UITableViewController {
     @IBAction func unwindToNoteTVC(_ unwindSegue: UIStoryboardSegue) {
 //        let sourceViewController = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
-        saveNotes()
-        loadNotes()
+        saveSelectedNote()
+        loadSavedNotes()
         tableView.setEditing(false, animated: true)
     }
 }
@@ -230,7 +231,7 @@ extension NotesTVC: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // add predicate
         let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
-        loadNotes(predicate: predicate)
+        loadSavedNotes(predicate: predicate)
     }
     
     
@@ -240,7 +241,7 @@ extension NotesTVC: UISearchBarDelegate {
     ///   - searchText: the text that is written in the search bar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
-            loadNotes()
+            loadSavedNotes()
             
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
@@ -251,7 +252,3 @@ extension NotesTVC: UISearchBarDelegate {
 }
 
 
-/* let image : UIImage = UIImage(data: (selectedNote?.image)!)!
- imageView.image = image
- print(image)
- print(imageView.image)*/

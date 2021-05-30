@@ -1,9 +1,8 @@
 //
-//  NoteVC.swift
-//  Note Demo Template
+//  singleNoteVC.swift
+//  note_team_Simhar_iOS
 //
-//  Created by Mohammad Kiani on 2021-01-28.
-//  Copyright © 2021 mohammadkiani. All rights reserved.
+//  Created by Simranpreet kaur on 2021-05-28.
 //
 
 import UIKit
@@ -13,41 +12,35 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var noteTextView: UITextView!
     let imagePicker = UIImagePickerController()
-//    static let shareInstance = DataBaseHelper()
 
-    var selectedNote: Note? {
+    var noteChosen: Note? {
         didSet {
-            editMode = true
+            editNote = true
         }
     }
     
     // edit mode by default is false
-    var editMode: Bool = false
+    var editNote: Bool = false
     
-    // an in instance of the noteTVC in noteVC - delegate
+
     weak var delegate: NotesTVC?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        titleTextView.text = selectedNote?.title
-        noteTextView.text = selectedNote?.body
-        //imageView.image = UIImage(named: "66")
-      /*  let image : UIImage = UIImage(data: (selectedNote?.image)!)!
-        imageView.image = image
-        print(image)
-        print(imageView.image)*/
+        titleTextView.text = noteChosen?.title
+        noteTextView.text = noteChosen?.body
         imagePicker.delegate = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if editMode {
-            delegate!.deleteNote(note: selectedNote!)
+        if editNote {
+            delegate!.deleteSelectedNote(note: noteChosen!)
            
         }
         guard noteTextView.text != "" || imageView.image != nil else {return}
-        delegate!.updateNote(with: titleTextView.text! , with: (imageView.image?.pngData())! , with : noteTextView.text!)
+        delegate!.updateSelectedNote(with: titleTextView.text! , with: (imageView.image?.pngData())! , with : noteTextView.text! )
     }
     @IBAction func pictureBtn(_ sender: UITapGestureRecognizer) {
        
@@ -63,7 +56,7 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
     if  let chosenImage = info[.editedImage] as? UIImage
       {
         imageView.image = chosenImage
-    //saving image into binary data
+         //saving image into binary data
        
         let imageInstance = Note(context: context)
         imageInstance.image = chosenImage.pngData()
@@ -78,8 +71,6 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
         print(error.localizedDescription)
               }
 
-
-    
       }
       else{
       

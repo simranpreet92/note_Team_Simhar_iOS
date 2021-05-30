@@ -1,9 +1,8 @@
 //
 //  AppDelegate.swift
-//  NoteFolder App Demo
+//  note_team_Simhar_iOS
 //
-//  Created by Mohammad Kiani on 2020-06-20.
-//  Copyright © 2020 mohammadkiani. All rights reserved.
+//  Created by Simranpreet kaur on 2021-05-28.
 //
 
 import UIKit
@@ -42,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
         */
-        let container = NSPersistentContainer(name: "NoteFolder_App_Demo")
+        let container = NSPersistentContainer(name: "notesMaking")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
