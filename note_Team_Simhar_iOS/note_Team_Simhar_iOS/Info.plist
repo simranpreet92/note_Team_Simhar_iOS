@@ -62,9 +62,7 @@
 	</array>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Microphone permission required</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Allow to Access map always </string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Allow to Access map when in use</string>
+	<string>allow to access map when in use</string>
 </dict>
 </plist>

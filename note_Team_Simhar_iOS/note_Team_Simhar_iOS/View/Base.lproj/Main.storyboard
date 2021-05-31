@@ -166,7 +166,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" image="location.circle" catalog="system"/>
                                         <connections>
-                                            <action selector="userCurrentLocation:" destination="Mp0-Of-fEQ" eventType="touchUpInside" id="hE1-g4-ENv"/>
+                                            <action selector="userCurrentLocation:" destination="Mp0-Of-fEQ" eventType="touchUpInside" id="JNn-ol-lD4"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ou-I6-w7D" userLabel="view location">
@@ -216,7 +216,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bb1" translatesAutoresizingMaskIntoConstraints="NO" id="9sW-Uq-6Gm">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9sW-Uq-6Gm">
                                 <rect key="frame" x="279" y="269" width="120" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="wVq-iK-Hhj"/>
@@ -425,7 +425,6 @@
     <color key="tintColor" systemColor="systemYellowColor"/>
     <resources>
         <image name="1112" width="301" height="168"/>
-        <image name="bb1" width="259" height="194"/>
         <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="folder.badge.plus" catalog="system" width="128" height="91"/>

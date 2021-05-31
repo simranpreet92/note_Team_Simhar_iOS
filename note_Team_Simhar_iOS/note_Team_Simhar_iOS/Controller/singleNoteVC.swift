@@ -16,7 +16,7 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var recordButton: UIButton!
     // create location manager
-    var locationManager = CLLocationManager()
+    var locationManager:CLLocationManager!
     var userCurrentLocation : CLLocationCoordinate2D!
     var mRegion : MKCoordinateRegion!
     var audioFile = ""
@@ -26,6 +26,7 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
     //recording audio
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
+    
     var noteChosen: Note? {
         didSet {
             editNote = true
@@ -46,50 +47,22 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
         titleTextView.text = noteChosen?.title
         noteTextView.text = noteChosen?.body
         audioFile = noteChosen?.title ?? ""
-        imageView.image = UIImage(data: (noteChosen?.image)!)
-        imagePicker.delegate = self
+        if noteChosen?.image == nil
+        {
+            print("No image")
+            imageView.image = UIImage(named: "n3")
+        }
+        else
+        {
+            print("image exists")
+            imageView.image = UIImage(data: (noteChosen?.image)!)
+        }
         self.setRecordSession()
-        // we assign the delegate property of the location manager to be this class
         
+      
         
     }
-    //MARK:- CLLocationManagerDelegate Methods
-
-       func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("3 entry")
-           let mUserLocation:CLLocation = locations[0] as CLLocation
-
-           let center = CLLocationCoordinate2D(latitude: mUserLocation.coordinate.latitude, longitude: mUserLocation.coordinate.longitude)
-              mRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        //print(mRegion)
-       print(center)
-         userCurrentLocationLat = center.latitude
-       print(userCurrentLocationLat)
-       // print(userCurrentLocationLat)
-       
-         userCurrentLocationLong = center.longitude
-        print(userCurrentLocationLong)
-        
-        print("3 exit")
-         //  mMapView.setRegion(mRegion, animated: true)
-       }
-   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-           print("Error - locationManager: \(error.localizedDescription)")
-       }
-   //MARK:- Intance Methods
-
-   func determineCurrentLocation() {
-    print("2 entry")
-       locationManager = CLLocationManager()
-       locationManager.delegate = self
-       locationManager.desiredAccuracy = kCLLocationAccuracyBest
-       locationManager.requestAlwaysAuthorization()
-
-       if CLLocationManager.locationServicesEnabled() {
-           locationManager.startUpdatingLocation()
-       }
-    print("2 exit")
-   }
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         if editNote {
@@ -100,7 +73,7 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
         delegate!.updateSelectedNote(with: titleTextView.text! , with: (imageView.image?.pngData())! , with : noteTextView.text! , with : audioFile , with : userCurrentLocationLat , with : userCurrentLocationLong)
     }
     @IBAction func pictureBtn(_ sender: UITapGestureRecognizer) {
-       
+        imagePicker.delegate = self
        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
            imagePicker.allowsEditing = true
         present(imagePicker, animated: true, completion: nil)
@@ -118,9 +91,7 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
         let imageInstance = Note(context: context)
         imageInstance.image = chosenImage.pngData()
         
-      //  print(imageInstance.image)
-        print(chosenImage.pngData())
-        print(chosenImage)
+     
         do {
         try context.save()
         print("Image is saved")
@@ -216,18 +187,41 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
   
  
     @IBAction func userCurrentLocation(_ sender: UIButton) {
-        locationManager.delegate = self
-        
        
-       print("1 entr")
-       // call current location function
-       determineCurrentLocation()
-       print("latloc" , userCurrentLocationLat)
-        print("longloc" , userCurrentLocationLong)
-       
+        // we assign the delegate property of the location manager to be this class
+         locationManager = CLLocationManager()
+        // we assign the delegate property of the location manager to be this class
+         locationManager.delegate = self
+         
+         // we define the accuracy of the location
+         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+         
+         // rquest for the permission to access the location
+        locationManager.requestWhenInUseAuthorization()
+         //locationManager.requestAlwaysAuthorization()/
+         
+         // start updating the location
+         locationManager.startUpdatingLocation()
+   
        
     }
-    
+    //MARK:- CLLocationManagerDelegate Methods
+
+        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+            print("3")
+            let mUserLocation:CLLocation = locations[0] as CLLocation
+         //   let span : MKCoordinateSpan = MKCoordinateSpanMake(mUserLocation.coordinate.latitude , mUserLocation.coordinate.longitude)
+            let center = CLLocationCoordinate2D(latitude: mUserLocation.coordinate.latitude, longitude: mUserLocation.coordinate.longitude)
+            print(center)
+            let mRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            print(mRegion)
+         //   mMapView.setRegion(mRegion, animated: true)
+        }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+            print("Error - locationManager: \(error.localizedDescription)")
+        }
+    //MARK:- Intance Methods
+
     @IBAction func viewLocation(_ sender: UIButton) {
         
     }

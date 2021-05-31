@@ -18,6 +18,7 @@
 		1CA19B0025C4C22E0077E382 /* NotesTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA19AFC25C4C22E0077E382 /* NotesTVC.swift */; };
 		1CA19B0125C4C22E0077E382 /* moveNoteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA19AFD25C4C22E0077E382 /* moveNoteVC.swift */; };
 		EB48A74D2663D4A500570B21 /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB48A74C2663D4A500570B21 /* mapViewController.swift */; };
+		EB48A74F2664658000570B21 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB48A74E2664658000570B21 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		1CA19AFC25C4C22E0077E382 /* NotesTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesTVC.swift; sourceTree = "<group>"; };
 		1CA19AFD25C4C22E0077E382 /* moveNoteVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = moveNoteVC.swift; sourceTree = "<group>"; };
 		EB48A74C2663D4A500570B21 /* mapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapViewController.swift; sourceTree = "<group>"; };
+		EB48A74E2664658000570B21 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		EB637D732660468F00AB9FC9 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -42,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB48A74F2664658000570B21 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +114,7 @@
 		EB637D722660468F00AB9FC9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EB48A74E2664658000570B21 /* CoreLocation.framework */,
 				EB637D732660468F00AB9FC9 /* AssetsLibrary.framework */,
 			);
 			name = Frameworks;
