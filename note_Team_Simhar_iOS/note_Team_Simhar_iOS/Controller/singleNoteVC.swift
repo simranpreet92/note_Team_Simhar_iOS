@@ -10,11 +10,12 @@ import MapKit
 import AVFoundation
 class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePickerControllerDelegate, AVAudioRecorderDelegate , CLLocationManagerDelegate, MKMapViewDelegate{
     @IBOutlet weak var locationBtn: UIButton!
-  
     @IBOutlet weak var titleTextView: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var recordButton: UIButton!
+    @IBOutlet weak var audioPlayButton: UIButton!
+    
     // create location manager
     var locationManager:CLLocationManager!
     var userCurrentLocation : CLLocationCoordinate2D!
@@ -26,6 +27,8 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
     //recording audio
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
+    //playing audio
+    var audioPlayer  :AVAudioPlayer!
     
     var noteChosen: Note? {
         didSet {
@@ -36,17 +39,16 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
     
     // edit mode by default is false
     var editNote: Bool = false
-    
 
     weak var delegate: NotesTVC?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-
         titleTextView.text = noteChosen?.title
         noteTextView.text = noteChosen?.body
-        audioFile = noteChosen?.title ?? ""
+        audioFile = noteChosen?.audio ?? ""
         if noteChosen?.image == nil
         {
             print("No image")
@@ -58,20 +60,12 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
             imageView.image = UIImage(data: (noteChosen?.image)!)
         }
         self.setRecordSession()
-        
-      
+        audioPlayButton.addTarget(self, action: #selector(playTapped), for: .touchUpInside)
         
     }
     
     
-    override func viewWillDisappear(_ animated: Bool) {
-        if editNote {
-            delegate!.deleteSelectedNote(note: noteChosen!)
-           
-        }
-        guard noteTextView.text != "" || imageView.image != nil else {return}
-        delegate!.updateSelectedNote(with: titleTextView.text! , with: (imageView.image?.pngData())! , with : noteTextView.text! , with : audioFile , with : userCurrentLocationLat , with : userCurrentLocationLong)
-    }
+   
     @IBAction func pictureBtn(_ sender: UITapGestureRecognizer) {
         imagePicker.delegate = self
        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
@@ -185,6 +179,20 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
     }
     }
   
+    @objc func playTapped()
+     {
+        
+        let audioUrl = getDocumentsDirectory().appendingPathComponent(audioFile)
+        do
+         {
+             audioPlayer = try AVAudioPlayer(contentsOf: audioUrl)
+             audioPlayer.play()
+         }catch
+         {
+             print(error)
+         }
+     }
+   
  
     @IBAction func userCurrentLocation(_ sender: UIButton) {
        
@@ -224,5 +232,13 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
 
     @IBAction func viewLocation(_ sender: UIButton) {
         
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        if editNote {
+            delegate!.deleteSelectedNote(note: noteChosen!)
+           
+        }
+        guard noteTextView.text != "" || imageView.image != nil else {return}
+        delegate!.updateSelectedNote(with: titleTextView.text! , with: (imageView.image?.pngData())! , with : noteTextView.text! , with : audioFile , with : userCurrentLocationLat , with : userCurrentLocationLong)
     }
 }

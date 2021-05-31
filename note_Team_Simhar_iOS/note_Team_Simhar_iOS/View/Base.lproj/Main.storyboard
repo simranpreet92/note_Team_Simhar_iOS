@@ -261,6 +261,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Ald-SX-gtQ"/>
                     <connections>
+                        <outlet property="audioPlayButton" destination="zci-HB-mWV" id="Xcx-IT-Zud"/>
                         <outlet property="imageView" destination="9sW-Uq-6Gm" id="uw5-5c-CnU"/>
                         <outlet property="locationBtn" destination="HP0-cz-WNW" id="BPm-2H-6nH"/>
                         <outlet property="noteTextView" destination="BUT-S5-Mnj" id="uxG-tj-Kqh"/>
@@ -427,7 +428,7 @@
         <image name="1112" width="301" height="168"/>
         <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
-        <image name="folder.badge.plus" catalog="system" width="128" height="91"/>
+        <image name="folder.badge.plus" catalog="system" width="32" height="32"/>
         <image name="location.circle" catalog="system" width="128" height="121"/>
         <image name="location.fill" catalog="system" width="128" height="121"/>
         <image name="mic.circle" catalog="system" width="128" height="121"/>
