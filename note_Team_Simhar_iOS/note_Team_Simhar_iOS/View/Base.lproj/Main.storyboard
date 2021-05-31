@@ -159,7 +159,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="63" translatesAutoresizingMaskIntoConstraints="NO" id="GHL-gM-C5g">
-                                <rect key="frame" x="70" y="733" width="287" height="30"/>
+                                <rect key="frame" x="20" y="733" width="287" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HP0-cz-WNW" userLabel="add Location Btn">
                                         <rect key="frame" x="0.0" y="0.0" width="24.5" height="30"/>
@@ -223,37 +223,37 @@
                                     <constraint firstAttribute="height" constant="100" id="xCp-CS-oew"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="zuW-Vv-g00">
-                                <rect key="frame" x="200" y="247" width="100.5" height="22"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Audio file" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyB-ch-MrB">
-                                        <rect key="frame" x="0.0" y="0.0" width="70.5" height="22"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zci-HB-mWV">
-                                        <rect key="frame" x="85.5" y="0.0" width="15" height="22"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="play.fill" catalog="system"/>
-                                    </button>
-                                </subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="zuW-Vv-g00">
+                                <rect key="frame" x="157" y="247" width="15" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Audio file" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyB-ch-MrB">
+                                <rect key="frame" x="297.5" y="248.5" width="70.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zci-HB-mWV">
+                                <rect key="frame" x="389" y="247" width="15" height="22"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="play.fill" catalog="system"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XtE-JG-pzj"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="XtE-JG-pzj" firstAttribute="trailing" secondItem="oZm-PU-OiQ" secondAttribute="trailing" constant="10" id="0qN-WH-rmA"/>
+                            <constraint firstItem="9sW-Uq-6Gm" firstAttribute="top" secondItem="zci-HB-mWV" secondAttribute="bottom" id="5iJ-EA-24E"/>
                             <constraint firstItem="GHL-gM-C5g" firstAttribute="leading" secondItem="XtE-JG-pzj" secondAttribute="leading" constant="20" id="Eca-fx-drD"/>
                             <constraint firstItem="BUT-S5-Mnj" firstAttribute="top" secondItem="oZm-PU-OiQ" secondAttribute="bottom" constant="5" id="GBY-CE-mZm"/>
                             <constraint firstItem="oZm-PU-OiQ" firstAttribute="top" secondItem="XtE-JG-pzj" secondAttribute="top" constant="10" id="HCR-nZ-JnR"/>
                             <constraint firstItem="XtE-JG-pzj" firstAttribute="trailing" secondItem="BUT-S5-Mnj" secondAttribute="trailing" constant="10" id="R5F-Gm-yEe"/>
-                            <constraint firstItem="GHL-gM-C5g" firstAttribute="leading" secondItem="XtE-JG-pzj" secondAttribute="leading" constant="70" id="Rqt-Vc-vZU"/>
-                            <constraint firstItem="zuW-Vv-g00" firstAttribute="top" secondItem="oZm-PU-OiQ" secondAttribute="bottom" constant="119" id="SCi-tn-lhP"/>
+                            <constraint firstItem="9sW-Uq-6Gm" firstAttribute="top" secondItem="FyB-ch-MrB" secondAttribute="bottom" id="Wxh-mI-4jJ"/>
                             <constraint firstItem="9sW-Uq-6Gm" firstAttribute="top" secondItem="oZm-PU-OiQ" secondAttribute="bottom" constant="141" id="g9h-Hp-mGV"/>
-                            <constraint firstItem="zuW-Vv-g00" firstAttribute="leading" secondItem="XtE-JG-pzj" secondAttribute="leading" constant="200" id="qHX-zS-gVS"/>
+                            <constraint firstItem="XtE-JG-pzj" firstAttribute="trailing" secondItem="FyB-ch-MrB" secondAttribute="trailing" constant="46" id="lpr-ih-t5M"/>
                             <constraint firstItem="XtE-JG-pzj" firstAttribute="bottom" secondItem="GHL-gM-C5g" secondAttribute="bottom" constant="50" id="rzT-3L-o7v"/>
                             <constraint firstItem="XtE-JG-pzj" firstAttribute="trailing" secondItem="9sW-Uq-6Gm" secondAttribute="trailing" constant="15" id="tid-DV-VBu"/>
+                            <constraint firstItem="XtE-JG-pzj" firstAttribute="trailing" secondItem="zci-HB-mWV" secondAttribute="trailing" constant="10" id="w4p-0q-9vf"/>
                             <constraint firstItem="XtE-JG-pzj" firstAttribute="bottom" secondItem="GHL-gM-C5g" secondAttribute="bottom" constant="50" id="xOj-9c-KIZ"/>
                             <constraint firstItem="oZm-PU-OiQ" firstAttribute="top" secondItem="XtE-JG-pzj" secondAttribute="top" constant="10" id="y33-8A-kAm"/>
                             <constraint firstItem="XtE-JG-pzj" firstAttribute="trailing" secondItem="oZm-PU-OiQ" secondAttribute="trailing" constant="10" id="yV2-n3-YZz"/>
@@ -261,6 +261,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Ald-SX-gtQ"/>
                     <connections>
+                        <outlet property="audioLabel" destination="FyB-ch-MrB" id="H5C-xt-bht"/>
                         <outlet property="audioPlayButton" destination="zci-HB-mWV" id="Xcx-IT-Zud"/>
                         <outlet property="imageView" destination="9sW-Uq-6Gm" id="uw5-5c-CnU"/>
                         <outlet property="locationBtn" destination="HP0-cz-WNW" id="BPm-2H-6nH"/>
@@ -428,7 +429,7 @@
         <image name="1112" width="301" height="168"/>
         <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
-        <image name="folder.badge.plus" catalog="system" width="32" height="32"/>
+        <image name="folder.badge.plus" catalog="system" width="128" height="91"/>
         <image name="location.circle" catalog="system" width="128" height="121"/>
         <image name="location.fill" catalog="system" width="128" height="121"/>
         <image name="mic.circle" catalog="system" width="128" height="121"/>

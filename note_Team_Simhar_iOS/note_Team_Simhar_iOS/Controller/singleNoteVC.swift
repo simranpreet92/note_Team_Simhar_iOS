@@ -9,9 +9,11 @@ import UIKit
 import MapKit
 import AVFoundation
 class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePickerControllerDelegate, AVAudioRecorderDelegate , CLLocationManagerDelegate, MKMapViewDelegate{
+    
     @IBOutlet weak var locationBtn: UIButton!
     @IBOutlet weak var titleTextView: UITextField!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var audioLabel: UILabel!
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var audioPlayButton: UIButton!
@@ -49,6 +51,7 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
         titleTextView.text = noteChosen?.title
         noteTextView.text = noteChosen?.body
         audioFile = noteChosen?.audio ?? ""
+        audioLabel.text =  audioFile
         if noteChosen?.image == nil
         {
             print("No image")
