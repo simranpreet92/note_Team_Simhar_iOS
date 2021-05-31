@@ -11,7 +11,6 @@ import CoreData
 class NotesTVC: UITableViewController {
 
   
-    @IBOutlet weak var sortBtn: UIBarButtonItem!
     @IBOutlet weak var trashBtn: UIBarButtonItem!
     @IBOutlet weak var moveBtn: UIBarButtonItem!
     let date = Date()

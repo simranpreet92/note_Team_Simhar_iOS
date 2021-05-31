@@ -59,7 +59,6 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem title="Sort Alphabetical" id="S4g-sV-9FD"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="pmA-QC-M4X"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="cLb-Ks-ygF"/>
                         <barButtonItem title="New Folder" image="folder.badge.plus" catalog="system" id="Vi9-Nd-FHn">
@@ -127,14 +126,11 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Notes" id="Qvj-yC-4iK">
-                        <rightBarButtonItems>
-                            <barButtonItem title="Item" image="ellipsis" catalog="system" id="D8A-mq-dFJ" userLabel="Editing Item">
-                                <connections>
-                                    <action selector="editingBtnPressed:" destination="JEN-XW-A8w" id="kcz-8Z-DaI"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="sort" image="square.and.arrow.down.fill" catalog="system" id="b0R-ss-Si5" userLabel="Editing Item"/>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="ellipsis" catalog="system" id="D8A-mq-dFJ" userLabel="Editing Item">
+                            <connections>
+                                <action selector="editingBtnPressed:" destination="JEN-XW-A8w" id="kcz-8Z-DaI"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -158,44 +154,6 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="463"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="63" translatesAutoresizingMaskIntoConstraints="NO" id="GHL-gM-C5g">
-                                <rect key="frame" x="20" y="733" width="287" height="30"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HP0-cz-WNW" userLabel="add Location Btn">
-                                        <rect key="frame" x="0.0" y="0.0" width="24.5" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" image="location.circle" catalog="system"/>
-                                        <connections>
-                                            <action selector="userCurrentLocation:" destination="Mp0-Of-fEQ" eventType="touchUpInside" id="JNn-ol-lD4"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ou-I6-w7D" userLabel="view location">
-                                        <rect key="frame" x="87.5" y="0.0" width="24.5" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" image="location.fill" catalog="system"/>
-                                        <connections>
-                                            <action selector="viewLocation:" destination="Mp0-Of-fEQ" eventType="touchUpInside" id="5pl-8B-nPk"/>
-                                            <segue destination="oFR-FX-SBY" kind="show" id="vEg-m4-BJW"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p9D-Uc-uUh">
-                                        <rect key="frame" x="175" y="0.0" width="24.5" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" image="camera.fill" catalog="system"/>
-                                        <connections>
-                                            <action selector="pictureBtn:" destination="Mp0-Of-fEQ" eventType="touchUpInside" id="Z6l-Nr-FmV"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IhP-Kc-8hh">
-                                        <rect key="frame" x="262.5" y="0.5" width="24.5" height="29"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" image="mic.circle" catalog="system">
-                                            <color key="titleColor" systemColor="secondarySystemBackgroundColor"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <color key="tintColor" red="0.25185244849999999" green="0.20111651859999999" blue="0.1909353302" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </stackView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oZm-PU-OiQ">
                                 <rect key="frame" x="304" y="98" width="100" height="30"/>
                                 <constraints>
@@ -238,25 +196,57 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="play.fill" catalog="system"/>
                             </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tEA-vG-mai">
+                                <rect key="frame" x="232" y="456" width="125" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="83" translatesAutoresizingMaskIntoConstraints="NO" id="GHL-gM-C5g">
+                                <rect key="frame" x="88" y="727" width="239.5" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ou-I6-w7D" userLabel="view location">
+                                        <rect key="frame" x="0.0" y="0.0" width="24.5" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" image="location.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="viewLocation:" destination="Mp0-Of-fEQ" eventType="touchUpInside" id="5pl-8B-nPk"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p9D-Uc-uUh">
+                                        <rect key="frame" x="107.5" y="0.0" width="24.5" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" image="camera.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="pictureBtn:" destination="Mp0-Of-fEQ" eventType="touchUpInside" id="Z6l-Nr-FmV"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IhP-Kc-8hh">
+                                        <rect key="frame" x="215" y="0.5" width="24.5" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" image="mic.circle" catalog="system">
+                                            <color key="titleColor" systemColor="secondarySystemBackgroundColor"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="tintColor" systemColor="systemYellowColor"/>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XtE-JG-pzj"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="XtE-JG-pzj" firstAttribute="trailing" secondItem="oZm-PU-OiQ" secondAttribute="trailing" constant="10" id="0qN-WH-rmA"/>
                             <constraint firstItem="9sW-Uq-6Gm" firstAttribute="top" secondItem="zci-HB-mWV" secondAttribute="bottom" id="5iJ-EA-24E"/>
-                            <constraint firstItem="GHL-gM-C5g" firstAttribute="leading" secondItem="XtE-JG-pzj" secondAttribute="leading" constant="20" id="Eca-fx-drD"/>
                             <constraint firstItem="BUT-S5-Mnj" firstAttribute="top" secondItem="oZm-PU-OiQ" secondAttribute="bottom" constant="5" id="GBY-CE-mZm"/>
                             <constraint firstItem="oZm-PU-OiQ" firstAttribute="top" secondItem="XtE-JG-pzj" secondAttribute="top" constant="10" id="HCR-nZ-JnR"/>
+                            <constraint firstItem="GHL-gM-C5g" firstAttribute="leading" secondItem="XtE-JG-pzj" secondAttribute="leading" constant="88" id="JqA-lK-vUX"/>
                             <constraint firstItem="XtE-JG-pzj" firstAttribute="trailing" secondItem="BUT-S5-Mnj" secondAttribute="trailing" constant="10" id="R5F-Gm-yEe"/>
                             <constraint firstItem="9sW-Uq-6Gm" firstAttribute="top" secondItem="FyB-ch-MrB" secondAttribute="bottom" id="Wxh-mI-4jJ"/>
                             <constraint firstItem="9sW-Uq-6Gm" firstAttribute="top" secondItem="oZm-PU-OiQ" secondAttribute="bottom" constant="141" id="g9h-Hp-mGV"/>
                             <constraint firstItem="XtE-JG-pzj" firstAttribute="trailing" secondItem="FyB-ch-MrB" secondAttribute="trailing" constant="46" id="lpr-ih-t5M"/>
-                            <constraint firstItem="XtE-JG-pzj" firstAttribute="bottom" secondItem="GHL-gM-C5g" secondAttribute="bottom" constant="50" id="rzT-3L-o7v"/>
                             <constraint firstItem="XtE-JG-pzj" firstAttribute="trailing" secondItem="9sW-Uq-6Gm" secondAttribute="trailing" constant="15" id="tid-DV-VBu"/>
                             <constraint firstItem="XtE-JG-pzj" firstAttribute="trailing" secondItem="zci-HB-mWV" secondAttribute="trailing" constant="10" id="w4p-0q-9vf"/>
-                            <constraint firstItem="XtE-JG-pzj" firstAttribute="bottom" secondItem="GHL-gM-C5g" secondAttribute="bottom" constant="50" id="xOj-9c-KIZ"/>
                             <constraint firstItem="oZm-PU-OiQ" firstAttribute="top" secondItem="XtE-JG-pzj" secondAttribute="top" constant="10" id="y33-8A-kAm"/>
                             <constraint firstItem="XtE-JG-pzj" firstAttribute="trailing" secondItem="oZm-PU-OiQ" secondAttribute="trailing" constant="10" id="yV2-n3-YZz"/>
+                            <constraint firstItem="XtE-JG-pzj" firstAttribute="bottom" secondItem="GHL-gM-C5g" secondAttribute="bottom" constant="56" id="zwj-dj-qOT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ald-SX-gtQ"/>
@@ -264,7 +254,7 @@
                         <outlet property="audioLabel" destination="FyB-ch-MrB" id="H5C-xt-bht"/>
                         <outlet property="audioPlayButton" destination="zci-HB-mWV" id="Xcx-IT-Zud"/>
                         <outlet property="imageView" destination="9sW-Uq-6Gm" id="uw5-5c-CnU"/>
-                        <outlet property="locationBtn" destination="HP0-cz-WNW" id="BPm-2H-6nH"/>
+                        <outlet property="mapView" destination="tEA-vG-mai" id="Sdl-X4-5iJ"/>
                         <outlet property="noteTextView" destination="BUT-S5-Mnj" id="uxG-tj-Kqh"/>
                         <outlet property="recordButton" destination="IhP-Kc-8hh" id="CgE-e8-hLf"/>
                         <outlet property="titleTextView" destination="oZm-PU-OiQ" id="610-wd-fNs"/>
@@ -359,36 +349,6 @@
             </objects>
             <point key="canvasLocation" x="2634.7826086956525" y="877.90178571428567"/>
         </scene>
-        <!--Map View Controller-->
-        <scene sceneID="FGx-Mq-N9J">
-            <objects>
-                <viewController id="oFR-FX-SBY" customClass="mapViewController" customModule="note_Team_Simhar_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6YR-Mg-kHq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QEi-aA-6vD">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                            </mapView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="zdW-x2-nRR"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="zdW-x2-nRR" firstAttribute="bottom" secondItem="QEi-aA-6vD" secondAttribute="bottom" id="56y-Wb-S1q"/>
-                            <constraint firstItem="QEi-aA-6vD" firstAttribute="top" secondItem="zdW-x2-nRR" secondAttribute="top" id="Bcb-zL-ntt"/>
-                            <constraint firstItem="QEi-aA-6vD" firstAttribute="leading" secondItem="zdW-x2-nRR" secondAttribute="leading" id="VFU-sG-MWq"/>
-                            <constraint firstItem="zdW-x2-nRR" firstAttribute="trailing" secondItem="QEi-aA-6vD" secondAttribute="trailing" id="exF-8f-3sv"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="4Xe-CG-Unp"/>
-                    <connections>
-                        <outlet property="mapView" destination="QEi-aA-6vD" id="wia-f7-Sgo"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FBj-Q6-4xf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3403" y="858"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="08Y-0r-XiI">
             <objects>
@@ -430,21 +390,16 @@
         <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="folder.badge.plus" catalog="system" width="128" height="91"/>
-        <image name="location.circle" catalog="system" width="128" height="121"/>
         <image name="location.fill" catalog="system" width="128" height="121"/>
         <image name="mic.circle" catalog="system" width="128" height="121"/>
         <image name="n6" width="275" height="183"/>
         <image name="nn3" width="271" height="186"/>
         <image name="play.fill" catalog="system" width="116" height="128"/>
         <image name="rectangle.and.pencil.and.ellipsis.rtl" catalog="system" width="128" height="92"/>
-        <image name="square.and.arrow.down.fill" catalog="system" width="121" height="128"/>
         <image name="trash" catalog="system" width="121" height="128"/>
         <image name="tray.and.arrow.down" catalog="system" width="128" height="109"/>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

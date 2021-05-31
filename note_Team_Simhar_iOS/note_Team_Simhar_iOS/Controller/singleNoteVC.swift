@@ -10,7 +10,7 @@ import MapKit
 import AVFoundation
 class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePickerControllerDelegate, AVAudioRecorderDelegate , CLLocationManagerDelegate, MKMapViewDelegate{
     
-    @IBOutlet weak var locationBtn: UIButton!
+    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var titleTextView: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var audioLabel: UILabel!
@@ -19,7 +19,7 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
     @IBOutlet weak var audioPlayButton: UIButton!
     
     // create location manager
-    var locationManager:CLLocationManager!
+    var locationManager = CLLocationManager()
     var userCurrentLocation : CLLocationCoordinate2D!
     var mRegion : MKCoordinateRegion!
     var audioFile = ""
@@ -65,10 +65,58 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
         self.setRecordSession()
         audioPlayButton.addTarget(self, action: #selector(playTapped), for: .touchUpInside)
         
+        
+        
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+       
+    }
+    //firstly, user's current location is displayed on map
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+    let userLocation = locations[0]
     
+    let Userlatitude = userLocation.coordinate.latitude
+    let Userlongitude = userLocation.coordinate.longitude
+        userCurrentLocation = CLLocationCoordinate2D(latitude: Userlatitude, longitude: Userlongitude)
+        // calling the function locationManager here
+        print(userCurrentLocation)
+    displayLocation(latitude: Userlatitude, longitude: Userlongitude, title: "your Current location", subtitle: "You are currently here")
+        
+     
     
-   
+    }
+
+    //MARK: - display user location method
+    
+    func displayLocation(latitude: CLLocationDegrees,
+                         longitude: CLLocationDegrees,
+                         title: String,
+                         subtitle: String) {
+        // 2nd step - define span
+        let latDelta: CLLocationDegrees = 0.05
+        let lngDelta: CLLocationDegrees = 0.05
+        
+        let span = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: lngDelta)
+        // 3rd step is to define the location
+        let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        // 4th step is to define the region
+        let region = MKCoordinateRegion(center: location, span: span)
+        
+        // 5th step is to set the region for the map
+        mapView.setRegion(region, animated: true)
+        
+        // 6th step is to define annotation
+        let annotation = MKPointAnnotation()
+        annotation.title = title
+        annotation.subtitle = subtitle
+        annotation.coordinate = location
+        mapView.addAnnotation(annotation)
+       
+    }
+
     @IBAction func pictureBtn(_ sender: UITapGestureRecognizer) {
         imagePicker.delegate = self
        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
@@ -197,44 +245,28 @@ class singleNoteVC: UIViewController , UINavigationControllerDelegate ,UIImagePi
      }
    
  
-    @IBAction func userCurrentLocation(_ sender: UIButton) {
-       
-        // we assign the delegate property of the location manager to be this class
-         locationManager = CLLocationManager()
+   
+    
+    //MARK:- Intance Methods
+
+    @IBAction func viewLocation(_ sender: UIButton) {
+        // we define the accuracy of the location
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
         // we assign the delegate property of the location manager to be this class
          locationManager.delegate = self
-         
-         // we define the accuracy of the location
-         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+       
          
          // rquest for the permission to access the location
-        locationManager.requestWhenInUseAuthorization()
+         locationManager.requestWhenInUseAuthorization()
          //locationManager.requestAlwaysAuthorization()/
          
          // start updating the location
          locationManager.startUpdatingLocation()
-   
-       
-    }
-    //MARK:- CLLocationManagerDelegate Methods
-
-        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            print("3")
-            let mUserLocation:CLLocation = locations[0] as CLLocation
-         //   let span : MKCoordinateSpan = MKCoordinateSpanMake(mUserLocation.coordinate.latitude , mUserLocation.coordinate.longitude)
-            let center = CLLocationCoordinate2D(latitude: mUserLocation.coordinate.latitude, longitude: mUserLocation.coordinate.longitude)
-            print(center)
-            let mRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-            print(mRegion)
-         //   mMapView.setRegion(mRegion, animated: true)
-        }
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-            print("Error - locationManager: \(error.localizedDescription)")
-        }
-    //MARK:- Intance Methods
-
-    @IBAction func viewLocation(_ sender: UIButton) {
-        
+         
+         // 1st step is to define latitude and longitude
+        // 1st step is to define latitude and longitude
+         mapView.delegate = self
     }
     override func viewWillDisappear(_ animated: Bool) {
         if editNote {
